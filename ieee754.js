@@ -20,6 +20,8 @@ $(function () {
 
     var UP_ARROW = 38;
     var DOWN_ARROW = 40;
+    var LEFT_ARROW = 37;
+    var RIGHT_ARROW = 39;
 
     // I probably should just use .toString(2) for these....
     var translate = [
@@ -266,6 +268,9 @@ $(function () {
 
     // Update the display after something has been entered in the decoding section.
     $("#hex").keyup(function (e) {
+        if(e.keyCode === LEFT_ARROW || e.keyCode === RIGHT_ARROW) {
+            return;
+        }       
         var h = $("#hex").val().toUpperCase();
         if (isValidLength(h)) {
             decodeAndUpdate(h);
@@ -278,6 +283,9 @@ $(function () {
     
     // Update the display after something has been entered in the encoding section.
     $("#dec").keyup(function (e) {
+        if(e.keyCode === LEFT_ARROW || e.keyCode === RIGHT_ARROW) {
+            return;
+        }
         var d = $("#dec").val();
         if (/^-?\d+(\.\d*)?([Ee][+-]?\d+)?$/.test(d)) {
             encodeAndUpdate(d);
