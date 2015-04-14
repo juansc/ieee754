@@ -174,7 +174,7 @@ $(function () {
                 var exponent = $(this).data('exponent');
                 var thisBit = exponent[eindex] === '0' ? '1' : '0';
                 exponent = exponent.substr(0, eindex) + thisBit + exponent.substr(eindex + 1);
-                data.exponent = exponent
+                data.exponent = exponent;
                 decodeAndUpdate(h, data);
                 event.preventDefault();
             });
@@ -193,7 +193,7 @@ $(function () {
                 var mantissa = $(this).data('mantissa');
                 var thisBit = mantissa[mindex] === '0' ? '1' : '0';
                 mantissa = mantissa.substr(0, mindex) + thisBit + mantissa.substr(mindex + 1);
-                data.mantissa = mantissa
+                data.mantissa = mantissa;
                 decodeAndUpdate(h, data);
                 event.preventDefault();
             });
@@ -208,7 +208,7 @@ $(function () {
 
     var isValidLength = function (h) {
         return (h.length===8 || h.length===16);
-    }
+    };
 
     /**
      * Here's the code for encoding decimal values into hex.  Here we let JavaScript do all
@@ -230,14 +230,14 @@ $(function () {
         }
         var endString = "";
         for (var i = charIndex; i < h.length-1; i++) {
-            endString += charToAppend
+            endString += charToAppend;
         }
         var decCharValue = hexToDec(h, charIndex);
         decCharValue += operationToPerform;
-        var newH = h.substring(0,charIndex) + "0123456789ABCDEF".charAt(decCharValue) + endString
+        var newH = h.substring(0,charIndex) + "0123456789ABCDEF".charAt(decCharValue) + endString;
         decodeAndUpdate(newH);
         $("#hex").val(newH);
-    }
+    };
     
 
 
@@ -283,9 +283,6 @@ $(function () {
     
     // Update the display after something has been entered in the encoding section.
     $("#dec").keyup(function (e) {
-        if(e.keyCode === LEFT_ARROW || e.keyCode === RIGHT_ARROW) {
-            return;
-        }
         var d = $("#dec").val();
         if (/^-?\d+(\.\d*)?([Ee][+-]?\d+)?$/.test(d)) {
             encodeAndUpdate(d);
